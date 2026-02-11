@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Aunty Ji ❤️</title>
+
+<style>
+/* Body and background */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    bottom: -50px;
+    font-size: 24px;
+    animation: float 6s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+
+/* Flower petals */
+.flower {
+    position: absolute;
+    top: -50px;
+    font-size: 24px;
+    animation: fall 8s linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* Container */
+.container {
+    text-align: center;
+    z-index: 10;
+    animation: fadeIn 3s ease-in-out;
+    max-width: 700px;
+}
+
+h1 {
+    font-size: 50px;
+    text-shadow: 0 0 20px white;
+}
+
+p {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+/* Buttons */
+button {
+    padding: 15px 35px;
+    font-size: 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    background: white;
+    color: #ff4e50;
+    transition: 0.4s;
+    box-shadow: 0 0 20px white;
+    margin: 10px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Moving No button */
+#noBtn {
+    position: relative;
+    background-color: #ff4e50;
+    color: white;
+}
+
+/* Love Message */
+#loveMessage {
+    margin-top: 25px;
+    font-size: 26px;
+    display: none;
+    animation: pop 1s ease forwards;
+}
+
+/* Pandas GIF */
+.pandas {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 5;
+}
+
+.panda {
+    width: 80px;
+    height: 80px;
+}
+
+/* Fireworks */
+#fireworks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pop {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background music -->
+<audio id="bgMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <h1>Dear Aunty Ji ❤️</h1>
+    <p>From the day you came into my life, everything became brighter.</p>
+    <p>Your smile is my favorite sunrise 🌅</p>
+    <p>Your voice is my favorite song 🎶</p>
+    <p>Your happiness means the world to me.</p>
+    <p>I promise to stand by your side, make you laugh, and care for you always.</p>
+    <p>You are not just special… you are my everything. 💖</p>
+    <p>Aunty Ji, will you accept my love and be mine forever?</p>
+
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 😅</button>
+
+    <div id="loveMessage">
+        I Love You So Much Aunty Ji ❤️<br>
+        Forever Yours,<br>
+        Suraj 💞
+    </div>
+</div>
+
+<!-- Pandas GIFs -->
+<div class="pandas">
+    <img class="panda" src="https://media.giphy.com/media/5xaOcLGvzHxDKjufnLW/giphy.gif" alt="panda1">
+    <img class="panda" src="https://media.giphy.com/media/5xaOcLGvzHxDKjufnLW/giphy.gif" alt="panda2">
+    <img class="panda" src="https://media.giphy.com/media/5xaOcLGvzHxDKjufnLW/giphy.gif" alt="panda3">
+</div>
+
+<!-- Fireworks -->
+<canvas id="fireworks"></canvas>
+
+<script>
+// Floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+
+// Falling flowers
+function createFlower() {
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML = "🌸";
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    document.body.appendChild(flower);
+    setTimeout(() => flower.remove(), 8000);
+}
+setInterval(createFlower, 400);
+
+// Yes/No button logic
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const loveMessage = document.getElementById("loveMessage");
+
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * 200 - 100 + "px";
+    noBtn.style.top = Math.random() * 50 - 25 + "px";
+});
+
+yesBtn.addEventListener("click", () => {
+    loveMessage.style.display = "block";
+    startFireworks();
+});
+
+// Fireworks
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function startFireworks() {
+    let particles = [];
+    function Particle(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = Math.random() * 3 + 2;
+        this.color = color;
+        this.velocity = {
+            x: (Math.random() - 0.5) * 8,
+            y: (Math.random() - 0.5) * 8
+        };
+        this.alpha = 1;
+    }
+
+    Particle.prototype.update = function() {
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.alpha -= 0.02;
+    }
+
+    Particle.prototype.draw = function() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.restore();
+    }
+
+    function animate() {
+        ctx.fillStyle = "rgba(0,0,0,0.1)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p, index) => {
+            if(p.alpha <= 0) particles.splice(index,1);
+            else {
+                p.update();
+                p.draw();
+            }
+        });
+        requestAnimationFrame(animate);
+    }
+
+    function explode() {
+        const colors = ["#ff4e50","#ff758c","#fc913a","#f9d423","#f4e2d8"];
+        for(let i=0;i<50;i++){
+            const color = colors[Math.floor(Math.random()*colors.length)];
+            particles.push(new Particle(window.innerWidth/2, window.innerHeight/2, color));
+        }
+    }
+
+    animate();
+    explode();
+    setInterval(explode, 500);
+}
+</script>
+
+</body>
+</html>
